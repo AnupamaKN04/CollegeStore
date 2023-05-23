@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    This is the register page.
+{% endblock %}
+{% block title %}
+    Register
+{% endblock %}
+{% block content %}
+<div>
+<form method="post" action="/register/">
+    {% csrf_token %}
+  <h1>Register</h1>  <br><br>
+  <label>Username : </label>
+  <input type="text" name="username"><br><br>
+    <label>Password : </label>
+  <input type="text" name="password"><br><br>
+    <button type="btn btn-onlinesuccess"><a href="{% url 'storeapp:login' %}">Register</a></button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+
+
+<form method="post">
+  {% csrf_token %}
+  To order, fill in the details
+    <button class="login" type="submit"><a href="{% url 'storeapp:order' %}">Order</a></button>
+</form>
+

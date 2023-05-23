@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if department %}
+        {{ department.description|truncatewords:155 }}
+    {% else %}
+        Welcome to JCET Online Store......
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if department %}
+        {{ department.name }} - JCET Store
+    {% else %}
+        See our products - JCET Store
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% if department %}
+        <div>
+            <div class="row my_row_class">
+                <div class="mx_auto"></div>
+                <p><a href="{% url 'storeapp:dept' %}">Our Departments</a> </p>
+                </div>
+            </div>
+        </div>
+{% endif %}
+<div class="mx_auto">
+    {% if department %}
+        <img class="my_image" src="{{department.image.url}}" alt="{{department.name}}" width="200px;" height="200px;">
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">{{department.name}}</h1>
+    <p class="text-justify">{{department.description}}</p>
+</div>
+{% else %}
+        <div>
+            <img  src="{% static 'img/banners.png' %}" alt="our products" width="100%">
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center my_title">Materials</h1>
+            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+        </div>
+{% endif %}
+
+
+<div class="container">
+    <div class="row mx_auto">
+        {% for product in products.object_list %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4 mb-3 d-flex align-items-stretch">
+            <div class="card text-center w-100" style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}" width="200px;" height="200px;"> </a>
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mx-auto">
+        {% if products.paginator.num_pages > 1 %}
+
+        <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+                <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}"> {{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+{% endblock %}

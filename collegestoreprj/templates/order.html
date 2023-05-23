@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    this is  user details page
+{% endblock %}
+{% block title %} User details {% endblock %}
+
+
+{% block content %}
+
+<form method="post" action="/order/" class="forming">
+    {% csrf_token %}
+
+      <label>Name : </label>
+      <input type="text" name="name"><br><br>
+      <label>DOB : </label>
+      <input type="date" name="dob"><br><br>
+      <label>Age : </label>
+      <input type="number" name="age"><br><br>
+      <label>DOB : </label>
+      <input type="text" name="dob"><br><br>
+      <label>Gender : </label><br><br>
+      <input type="radio" name="female">
+      <label> Female </label>
+      <input type="radio" name="male">
+      <label> Male </label><br><br>
+      <label>Phone Number : </label>
+      <input type="number" name="phonenumber"><br><br>
+      <label>Email address : </label>
+      <input type="email" name="email"><br><br>
+      <p>Address : </p>
+      <textarea cols="80" rows="8" value="address"></textarea><br><br>
+        <label for="department">Department : </label>
+    <select id="department" name="department">
+        <option value="select">----Select Department-----</option>
+        <option value="Applied Science">Applied Science</option>
+        <option value="Architecture">Architecture</option>
+        <option value="Commerce">Commerce</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Law">Law</option>
+    </select><br><br>
+    <label for="course">Course : </label>
+    <select id="course" name="course">
+        <option value="select">----Select Course-----</option>
+        <option value="BSc Mathematics">Applied Science</option>
+        <option value="BArch">Architecture</option>
+        <option value="Bcom">Commerce</option>
+        <option value="CSE">Engineering</option>
+        <option value="BBA LL.B">Law</option>
+    </select>
+      <label for="purpose">Purpose : </label>
+    <select id="purpose" name="purpose">
+        <option value="select">----Select Purpose-----</option>
+        <option value="Enquiry">Enquiry</option>
+        <option value="Place Order">Place Order</option>
+        <option value="Return">Return</option>
+    </select><br><br>
+      <p>Materials : </p>
+    <input type="checkbox" id="Data mining textbook" name="materials" value="Data Mining Textbook">
+    <label for="Data mining textbook">Data Mining Textbook</label>
+    <input type="checkbox" id="labcoat" name="materials" value="Labcoat">
+    <label for="labcoat">Labcoat</label>
+    <input type="checkbox" id="management accounting textbook" name="materials" value="Management accounting textbook">
+    <label for="management accounting textbook">Management accounting textbook</label>
+    <input type="checkbox" id="mathematics textbook" name="materials" value="Mathematics textbook">
+    <label for="mathematics textbook">Mathematics textbook</label>
+      <input type="checkbox" id="pencil" name="materials" value="Pencil">
+    <label for="pencil">Pencil</label>
+      <input type="checkbox" id="political system textbook" name="materials" value="Political system textbook">
+    <label for="political system textbook">Political system textbook</label>
+
+      <br><br>
+
+
+      <button type="submit" class="login"><a href="{% url 'storeapp:confirm' %}">Submit</a></button><br><br>
+    <button type="submit"><a href="{% url 'storeapp:logout' %}">Logout</a></button>
+</form>
+
+{% endblock %}
